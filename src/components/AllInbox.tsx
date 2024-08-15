@@ -21,11 +21,10 @@ const AllInbox = () => {
     const fetchMails = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("api/all-mails");
+        const response = await axios.get("/api/all-mails");
         setEmails(response.data.data.data);
-        console.log("Onebox Mails Fetched successfully:",response.data.data)
-      } catch (error: any) {
-        throw new Error("Error: ",error)
+      } catch (error) {
+        console.error("Error fetching emails:", error);
       } finally {
         setLoading(false);
       }
@@ -36,16 +35,14 @@ const AllInbox = () => {
 
   const handleEmailClick = async (email: Email) => {
     setSelectedEmailId(email.id);
+    const thread_id = email.threadId;
     try {
-      const response = await axios.get("api/onebox-thread", {
-        params: {
-          thread_id: String(email.threadId),
-        },
+      const response = await axios.get("/api/onebox-thread", {
+        params: { thread_id: String(email.threadId) },
       });
-      console.log(response.data);
-      dispatch(setSelectedEmails(response.data.data.data)); // Ensure response data structure matches Email[]
+      dispatch(setSelectedEmails(response.data.data.data));
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching thread:", error);
     }
   };
 

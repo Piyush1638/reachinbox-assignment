@@ -1,12 +1,14 @@
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic'; // Mark this API route as dynamic
+
 export async function GET(request: NextRequest) {
   try {
     const token = request.cookies.get("token");
 
     if (token) {
-      const data = await axios.get(
+      const response = await axios.get(
         "https://hiring.reachinbox.xyz/api/v1/onebox/list",
         {
           headers: {
@@ -17,14 +19,24 @@ export async function GET(request: NextRequest) {
 
       return NextResponse.json({
         message: "All mails fetched successfully",
-        data: data.data,
+        data: response.data,
       });
     } else {
-      return NextResponse.json({
-        message: "Token not found",
-      });
+      return NextResponse.json(
+        {
+          message: "Token not found",
+        },
+        { status: 401 }
+      );
     }
   } catch (err: any) {
-    throw new Error("Error: ", err.message);
+    console.error("Error fetching emails:", err.message);
+    return NextResponse.json(
+      {
+        message: "Error fetching emails",
+        error: err.message,
+      },
+      { status: 500 }
+    );
   }
 }

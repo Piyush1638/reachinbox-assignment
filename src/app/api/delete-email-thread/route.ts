@@ -6,7 +6,6 @@ export async function DELETE(request: NextRequest) {
     // Get thread_id from URL parameters
     console.log("I have enterd in api")
     const thread_id = request.nextUrl.searchParams.get("thread_id");
-    console.log(thread_id)
 
 
     // Retrieve token from cookies
@@ -25,14 +24,11 @@ export async function DELETE(request: NextRequest) {
 
     // Make the API request to the third-party service
     const api = `https://hiring.reachinbox.xyz/api/v1/onebox/messages/${thread_id}`;
-    console.log("API: ",api)
     const response = await axios.get(api, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("Response: ",response.data.data)
-
     // Return a successful response with the data
     return NextResponse.json({
       message: "Email message deleted successfully",
