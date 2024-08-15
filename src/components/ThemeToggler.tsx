@@ -33,7 +33,7 @@ const ThemeToggler = () => {
         <>
           <div className="h-4 w-4 rounded-full dark:bg-[#888686]" />
           <Image
-            src={"/google-login/LoggedInnavbar/sun.svg"}
+            src={"/google-login/LoggedInNavbar/sun.svg"}
             alt="Sun Icon"
             height={16}
             width={16}
@@ -42,7 +42,7 @@ const ThemeToggler = () => {
       ) : (
         <>
           <Image
-            src={"/google-login/LoggedInnavbar/moon.svg"}
+            src={"/google-login/LoggedInNavbar/moon.svg"}
             alt="Moon Icon"
             height={16}
             width={16}
