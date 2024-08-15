@@ -188,12 +188,12 @@ const ReplyModal: React.FC<ModalProps> = ({ setOpenModal, threadId }) => {
               {/* Add more variables as needed */}
             </div>
           )}
-          <div className="flex items-center gap-1 dark:text-[#ADADAD] text-[#454F5B] text-sm text-nowrap font-semibold">
+          <div className="flex items-center cursor-pointer gap-1 dark:text-[#ADADAD] text-[#454F5B] text-sm text-nowrap font-semibold">
             <MdOutlineRemoveRedEye className="text-2xl dark:text-[#ADADAD]" />
             Preview Email
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center cursor-pointer dark:text-[#ADADAD] text-black">
               <LiaFontSolid className="text-2xl" />
               <BsThreeDotsVertical className="text-xs" />
