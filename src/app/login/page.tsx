@@ -5,7 +5,7 @@ import React from "react";
 
 const page = () => {
   const handleLogin = () => {
-    window.location.href = `https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:3000/google-login`;
+    window.location.href = `https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=${process.env.NEXT_PUBLIC_REDIRECT_URL}`;
   };
   return (
     <main className="bg-black flex min-h-screen w-full flex-col items-center ">

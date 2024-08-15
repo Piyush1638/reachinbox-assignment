@@ -2,9 +2,6 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/components/Sidebar";
-import LoggedInNavbar from "@/components/LoggedInNavbar";
-import AllInbox from "@/components/AllInbox";
 
 const GoogleLogin: React.FC = () => {
   const router = useRouter();
@@ -23,7 +20,12 @@ const GoogleLogin: React.FC = () => {
 
   return (
     <main className="min-h-screen bg-black flex items-center justify-center">
-      <h1 className="text-2xl font-semibold text-white">Authenticating...</h1>
+      <div className="flex flex-col gap-8 justify-center items-center">
+        <div className="h-10 w-10 rounded-full border-b border-purple-600 animate-spin" />
+        <h1 className="text-2xl font-semibold text-white">
+          Authenticating! Please wait...
+        </h1>
+      </div>
     </main>
   );
 };

@@ -10,6 +10,7 @@ const DeleteEmail: React.FC = () => {
   );
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const toggleModal = (show: boolean) => {
     setIsVisible(show);
@@ -36,15 +37,21 @@ const DeleteEmail: React.FC = () => {
   };
 
   const onDelete = async () => {
+    setLoading(true);
     try {
       const response = await axios.delete("api/delete-email-thread", {
         params: {
           thread_id: String(selectedEmails[0].threadId),
         },
       });
-      console.log(response.data);
+      console.log(response.data.message);
+      setLoading(false);
+      alert(response.data.message);
     } catch (error) {
       console.log("Error: ", error);
+      alert("An error occurred. Please try again later.");
+    } finally {
+      setLoading(false);
     }
     toggleModal(false);
   };
@@ -72,7 +79,7 @@ const DeleteEmail: React.FC = () => {
                   onClick={onDelete}
                   className="bg-red-600 text-white py-2 px-6 rounded-lg"
                 >
-                  Delete
+                  {loading ? (<div className="h-5 w-5 rounded-full animate-spin border-b-2 border-white"/>): "Delete"}
                 </button>
               </div>
             </div>
